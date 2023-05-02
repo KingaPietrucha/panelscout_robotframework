@@ -12,7 +12,7 @@ ${PAGELOGO}     xpath=//*[@id="__next"]/div[1]/main/div[3]/div[1]/div/div[1]
 ${SIGNOUTBUTTON}          xpath=//ul[2]//div[@role='button'][2]
 ${LOGINFORM}               xpath=//*[@id='__next']/form
 ${CHANGELANGUAGEBUTTON}   xpath=//ul[2]//div[@role='button'][1]
-${MAINPAGELINK}           xpath=//ul[1]//div[@role='button'][1]
+${MAINPAGE}           xpath=//ul[1]//div[@role='button'][1]
 ${ADD PLAYER BUTTON}            xpath=//a[contains(@href,'add')]
 ${FORM TITLE}                   xpath=//form//*[contains(@class, 'h5')]
 ${PLAYER NAME FIELD}            xpath=//input[@name='name']
@@ -95,33 +95,32 @@ Click on the Sign out button
 Assert login page
     Wait Until Element Is Visible    ${LOGINFORM}
     Title Should Be     Scouts panel - sign in
-    Capture Page Screenshot    screenshots/login/login-page.png
+    Capture Page Screenshot    alert_login_page.png
 Click on the Change language button
-    Wait Until Element Is Visible    ${MAINPAGELINK}
+    Wait Until Element Is Visible    ${MAINPAGE}
     Click Element    ${CHANGELANGUAGEBUTTON}
 Assert language change
     Element Text Should Be      ${CHANGELANGUAGEBUTTON}     English
-    Capture Page Screenshot     screenshots/dashboard/language-set-pl.png
+    Capture Page Screenshot     alert_change_language.png
 Click on the Add player button
     Wait Until Element Is Visible       ${MAINPAGELINK}
     Click Element    ${ADD PLAYER BUTTON}
 Click on the Players button
-    Wait Until Element Is Visible    ${MAINPAGELINK}
+    Wait Until Element Is Visible    ${MAINPAGE}
     Click Element   xpath=//ul[1]//div[@role='button'][2]
 Assert players page
-    Wait Until Element Is Visible
     Title Should Be    Players (3543) page 1
-    Capture Page Screenshot    screenshotplayers.png
+    Capture Page Screenshot    alert_players.png
 Type in name
     Wait Until Element Is Visible       ${FORM TITLE}
-    Input Text      ${PLAYER NAME FIELD}    Test
+    Input Text      ${PLAYER NAME FIELD}    Marek
 Type in surname
-    Input Text      ${PLAYER SURNAME FIELD}     Testowski
+    Input Text      ${PLAYER SURNAME FIELD}     Nowak
 Type in age
-    Input Text      ${PLAYER AGE FIELD}     01/01/1990
+    Input Text      ${PLAYER AGE FIELD}     21/04/1997
 Type in main position
     Input Text      ${PLAYER MAIN POSITION FIELD}       Forward
 Assert edit player page
     Wait Until Element Is Visible    ${PROGRESS BAR TOASTER}
     Element Should Contain      ${FORM TITLE}   Edit player
-    Capture Page Screenshot    screenshots/add-player/player-added.png
+    Capture Page Screenshot    alert_add-player.png
