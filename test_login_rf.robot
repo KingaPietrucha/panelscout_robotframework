@@ -70,7 +70,7 @@ Add new player
     Type in age
     Type in main position
     Click on the Submit button
-    Assert edit player page
+    Assert edit page
     [Teardown]    Close Browser
 
 *** Keywords ***
@@ -82,7 +82,7 @@ Type in email
 Type in password
     Input Text      ${PASSWORDINPUT}    Test-1234
 Click on the Submit button
-    Click Element    xpath=//*[(text()= 'Sign in')]
+    Click Element    xpath=//*[@id="__next"]/div[1]/main/div[2]/form/div[3]/button[1]/span[1]
 Assert dashboard
     Wait Until Element Is Visible    ${PAGELOGO}
     Title Should Be    Scouts panel
@@ -103,7 +103,7 @@ Assert language change
     Element Text Should Be      ${CHANGELANGUAGEBUTTON}     English
     Capture Page Screenshot     alert_change_language.png
 Click on the Add player button
-    Wait Until Element Is Visible       ${MAINPAGELINK}
+    Wait Until Element Is Visible       ${MAINPAGE}
     Click Element    ${ADD PLAYER BUTTON}
 Click on the Players button
     Wait Until Element Is Visible    ${MAINPAGE}
@@ -120,7 +120,7 @@ Type in age
     Input Text      ${PLAYER AGE FIELD}     21/04/1997
 Type in main position
     Input Text      ${PLAYER MAIN POSITION FIELD}       Forward
-Assert edit player page
+Assert edit page
     Wait Until Element Is Visible    ${PROGRESS BAR TOASTER}
     Element Should Contain      ${FORM TITLE}   Edit player
     Capture Page Screenshot    alert_add-player.png
