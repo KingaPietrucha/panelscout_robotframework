@@ -19,8 +19,9 @@ ${PLAYER NAME FIELD}            xpath=//input[@name='name']
 ${PLAYER SURNAME FIELD}         xpath=//input[@name='surname']
 ${PLAYER AGE FIELD}             xpath=//input[@name='age']
 ${PLAYER MAIN POSITION FIELD}   xpath=//input[@name='mainPosition']
-${PROGRESS BAR TOASTER}         xpath=//*[@role='alert']
+${PROGRESS BAR}         xpath=//*[@role='alert']
 ${PLAYERS BUTTON}               xpath=//ul[1]//div[@role='button'][2]
+${DEVTEAMCONTACTBUTTON}         xpath=//*[@id='__next']/div[1]/main/div[3]/div[1]/div/div[3]/a/span[1]
 
 
 *** Test Cases ***
@@ -57,6 +58,15 @@ Click players button
     Click on the Sign in button
     Click On The Players button
     Assert Players Page
+    [Teardown]    Close Browser
+
+Click on the dev team contact button
+    Open login page
+    Type in email
+    Type in password
+    Click on the Sign in button
+    Click On The Dev Team Contact
+    Assert Dev Team Contact
     [Teardown]    Close Browser
 
 Add new player
@@ -108,6 +118,12 @@ Click on the Add player button
 Click on the Players button
     Wait Until Element Is Visible    ${MAINPAGE}
     Click Element   xpath=//ul[1]//div[@role='button'][2]
+Click on the dev team contact
+    Wait Until Element Is Visible   ${MAINPAGE}
+    Click Element   xpath=//*[@id='__next']/div[1]/main/div[3]/div[1]/div/div[3]/a/span[1]
+Assert dev team contact
+    Title Should Be    Find your workspace | Slack
+    Capture Page Screenshot    alert_DEV_TEAM_CONTACT.png
 Assert players page
     Title Should Be    Players (3543) page 1
     Capture Page Screenshot    alert_players.png
@@ -119,8 +135,8 @@ Type in surname
 Type in age
     Input Text      ${PLAYER AGE FIELD}     21/04/1997
 Type in main position
-    Input Text      ${PLAYER MAIN POSITION FIELD}       Forward
+    Input Text      ${PLAYER MAIN POSITION FIELD}       Winger
 Assert edit page
-    Wait Until Element Is Visible    ${PROGRESS BAR TOASTER}
+    Wait Until Element Is Visible    ${PROGRESS BAR}
     Element Should Contain      ${FORM TITLE}   Edit player
     Capture Page Screenshot    alert_add-player.png
